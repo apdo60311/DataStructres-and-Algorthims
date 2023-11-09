@@ -50,7 +50,19 @@ public:
 
 
 
-    Node* delete_from_head() {};
+    Node* delete_from_head() {
+        if (head) {
+            Node *next = XOR(head->both, nullptr);
+            delete head;
+            head = next;
+            if (next) {
+                next->both = XOR(next->both, head);
+            }
+            else {
+                tail = nullptr;
+            }
+        }
+    };
     Node* delete_from_tail() {};
 
     void print() {
